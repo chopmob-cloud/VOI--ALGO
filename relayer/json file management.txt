@@ -1,0 +1,13 @@
+sudo -u relayer tee /opt/relayers/voi_to_algo/processed.json > /dev/null << 'EOF'
+{
+  "processed": {},
+  "cursor_round": 590000
+}
+EOF
+
+sudo -u relayer tee /opt/relayers/algo_to_voi/processed.json > /dev/null << 'EOF'
+{
+  "processed": {},
+  "cursor_round": 590000
+}
+EOF

@@ -1,0 +1,33 @@
+[Unit]
+Description=VOI → Algorand Relayer
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=relayer
+Group=relayer
+
+WorkingDirectory=/opt/relayers/voi_to_algo
+
+# IMPORTANT:
+# The relayer loads /opt/relayers/voi_to_algo/env/voi.env itself.
+# Do NOT use EnvironmentFile here or it can override runtime behavior.
+ExecStart=/opt/relayers/voi_to_algo/venv/bin/python relayer.py
+
+Restart=always
+RestartSec=5
+
+# Logs
+StandardOutput=append:/opt/relayers/voi_to_algo/logs/out.log
+StandardError=append:/opt/relayers/voi_to_algo/logs/err.log
+
+# Hardening
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=full
+ProtectHome=true
+ReadWritePaths=/opt/relayers/voi_to_algo
+
+[Install]
+WantedBy=multi-user.target

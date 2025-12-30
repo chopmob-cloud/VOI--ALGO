@@ -1,0 +1,26 @@
+chown root:relayer /opt/relayers/voi_to_algo
+chmod 750 /opt/relayers/voi_to_algo
+
+chown root:relayer /opt/relayers/voi_to_algo/relayer.py
+chmod 750 /opt/relayers/voi_to_algo/relayer.py
+
+chown -R root:relayer /opt/relayers/voi_to_algo/venv
+chmod -R 750 /opt/relayers/voi_to_algo/venv
+
+chown root:relayer /opt/relayers/voi_to_algo/env
+chmod 750 /opt/relayers/voi_to_algo/env
+
+chown root:relayer /opt/relayers/voi_to_algo/env/voi.env
+chmod 640 /opt/relayers/voi_to_algo/env/voi.env
+
+chown -R relayer:relayer /opt/relayers/voi_to_algo/logs
+chmod 750 /opt/relayers/voi_to_algo/logs
+chmod 640 /opt/relayers/voi_to_algo/logs/*.log
+
+touch /opt/relayers/voi_to_algo/processed.json
+chown relayer:relayer /opt/relayers/voi_to_algo/processed.json
+chmod 640 /opt/relayers/voi_to_algo/processed.json
+
+chown root:relayer /opt/relayers/voi_to_algo/test_emit_mint.py
+chmod 750 /opt/relayers/voi_to_algo/test_emit_mint.py
+
