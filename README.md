@@ -17,12 +17,13 @@ flowchart TD
     AEA["ALGORAND ESCROW APP"]
     AU["Algorand User"]
 
-    U -->|1) ASA transfer + AppCall<br/>(bridge_deposit)| VEA
+    U -->|1) ASA transfer + AppCall (bridge_deposit)| VEA
     VEA -->|2) Emits structured log| R
     R -->|3) Reads VOI log| R
     R -->|4) Calls Algorand escrow withdraw| AEA
     AEA -->|5) Sends ASA| AU
 ```
+
 
 
 
