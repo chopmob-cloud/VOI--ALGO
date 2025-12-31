@@ -9,21 +9,18 @@ I changed it to capture, log, release - which is having issues!!!
 
 So ill keep this updated.
 
-VOI USER
-  |
-  | 1) Atomic group
-  |    - AppCall("bridge_deposit", ...)
-  |    - ASA transfer → escrow
-  v
-ESCROW APP
-  |
-  | 2) Emits LOG (validated on-chain)
-  v
-RELAYER (off-chain)
-  |
-  | 3) Sees log, verifies nonce
-  | 4) Calls withdraw() as admin
-  v
-ALG USER RECEIVES ASA
+flowchart TD
+    U[USER (VOI)]
+    VEA[VOI ESCROW APP]
+    R[RELAYER (server)]
+    AEA[ALGORAND ESCROW APP]
+    AU[Algorand User]
+
+    U -->|1) ASA transfer + AppCall<br/>(bridge_deposit)| VEA
+    VEA -->|2) Emits structured log| R
+    R -->|3) Reads VOI log| R
+    R -->|4) Calls Algorand escrow withdraw| AEA
+    AEA -->|5) Sends ASA| AU
+
 
 
