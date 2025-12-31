@@ -9,6 +9,7 @@ I changed it to capture, log, release - which is having issues!!!
 
 So ill keep this updated.
 
+```mermaid
 flowchart TD
     U[USER (VOI)]
     VEA[VOI ESCROW APP]
@@ -21,6 +22,6 @@ flowchart TD
     R -->|3) Reads VOI log| R
     R -->|4) Calls Algorand escrow withdraw| AEA
     AEA -->|5) Sends ASA| AU
-
+```
 
 
