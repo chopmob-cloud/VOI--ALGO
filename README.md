@@ -11,11 +11,11 @@ So ill keep this updated.
 
 ```mermaid
 flowchart TD
-    U[USER (VOI)]
-    VEA[VOI ESCROW APP]
-    R[RELAYER (server)]
-    AEA[ALGORAND ESCROW APP]
-    AU[Algorand User]
+    U["USER (VOI)"]
+    VEA["VOI ESCROW APP"]
+    R["RELAYER (server)"]
+    AEA["ALGORAND ESCROW APP"]
+    AU["Algorand User"]
 
     U -->|1) ASA transfer + AppCall<br/>(bridge_deposit)| VEA
     VEA -->|2) Emits structured log| R
@@ -23,5 +23,6 @@ flowchart TD
     R -->|4) Calls Algorand escrow withdraw| AEA
     AEA -->|5) Sends ASA| AU
 ```
+
 
 
