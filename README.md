@@ -7,18 +7,53 @@ This is the new design - its coming - scripts currently are now outdated.
 
 ```mermaid
 flowchart TD
-    U["USER (VOI)"]
-    VEA["VOI ESCROW APP"]
-    R["RELAYER (server)"]
-    AEA["ALGORAND ESCROW APP"]
-    AU["Algorand User"]
+    %% =========================
+    %% USER SIDE
+    %% =========================
+    U["User Wallet<br/>VOI Network"]
 
-    U -->|1 ASA transfer + AppCall| VEA
-    VEA -->|2 Emits structured log| R
-    R -->|3 Reads VOI log| R
-    R -->|4 Escrow withdraw| AEA
-    AEA -->|5 Sends ASA| AU
+    %% =========================
+    %% VOI CHAIN
+    %% =========================
+    subgraph VOI["VOI Network"]
+        T["Treasury Wallet<br/>(Holds NUGGET ASA)"]
+        A["V4 Log Validator App<br/>(No Custody)"]
+        I["VOI Indexer"]
+    end
+
+    %% =========================
+    %% RELAYER
+    %% =========================
+    subgraph RELAYER["Relayer (Off-chain)"]
+        L["Log Listener"]
+        D["Deduplication & Validation"]
+        X["Payout Executor"]
+    end
+
+    %% =========================
+    %% ALGORAND
+    %% =========================
+    subgraph ALGO["Algorand Network"]
+        P["Algorand Treasury / Escrow"]
+        RCV["User Algorand Address"]
+    end
+
+    %% =========================
+    %% FLOWS
+    %% =========================
+    U -->|ASA Transfer| T
+    U -->|App Call Deposit Metadata| A
+
+    A -->|Emit Log| I
+
+    I -->|Indexed Logs| L
+    L --> D
+    D -->|Valid Deposit| X
+
+    X -->|Submit Tx| P
+    P -->|Funds Released| RCV
 ```
+
 
 
 
