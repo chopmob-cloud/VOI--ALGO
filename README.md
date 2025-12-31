@@ -24,5 +24,5 @@ RELAYER (off-chain)
   | 3) Sees log, verifies nonce
   | 4) Calls withdraw() as admin
   v
-ALGO USER RECEIVES ASA
+ALG USER RECEIVES ASA
 
