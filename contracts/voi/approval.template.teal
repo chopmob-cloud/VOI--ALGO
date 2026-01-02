@@ -1,0 +1,129 @@
+#pragma version 8
+
+// -------- CONFIG (replace before compile) --------
+#define TREASURY_ADDR   0x__TREASURY_PUBKEY_32_BYTES__
+#define ASA_ID          __ASA_ID__
+#define LOG_PREFIX      0x__LOG_PREFIX_BYTES__
+// ------------------------------------------------
+
+intcblock 0 1 4 32
+
+pushbytes TREASURY_ADDR
+store 0
+
+pushint ASA_ID
+store 1
+
+pushbytes LOG_PREFIX
+store 2
+
+txn ApplicationID
+intc_0
+==
+bnz init
+
+txn OnCompletion
+intc_0
+==
+bnz main
+
+intc_0
+return
+
+init:
+intc_1
+return
+
+main:
+txn NumAppArgs
+intc_2
+==
+assert
+
+txna ApplicationArgs 0
+pushbytes 0x6465706f736974  // "deposit"
+==
+assert
+
+txna ApplicationArgs 1
+len
+intc_3
+==
+assert
+
+txna ApplicationArgs 2
+len
+intc_3
+==
+assert
+
+txna ApplicationArgs 3
+len
+pushint 8
+==
+assert
+
+global GroupSize
+pushint 2
+==
+assert
+
+txn GroupIndex
+intc_1
+==
+assert
+
+gtxn 0 TypeEnum
+intc_2
+==
+assert
+
+gtxn 0 XferAsset
+load 1
+==
+assert
+
+gtxn 0 AssetReceiver
+load 0
+==
+assert
+
+gtxn 0 AssetAmount
+txna ApplicationArgs 3
+btoi
+==
+assert
+
+gtxn 0 Sender
+txn Sender
+==
+assert
+
+// replay protection
+txna ApplicationArgs 1
+box_get
+swap
+pop
+intc_0
+==
+assert
+
+txna ApplicationArgs 1
+intc_1
+itob
+box_put
+
+// emit log
+load 2
+txna ApplicationArgs 1
+concat
+txna ApplicationArgs 2
+concat
+txna ApplicationArgs 3
+concat
+gtxn 0 TxID
+concat
+log
+
+intc_1
+return
