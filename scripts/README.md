@@ -58,11 +58,11 @@ Opts an Algorand account into the Nugget ASA.
 
 The Algorand receiver must be opted-in before funds can be released by the escrow.
 
+<hr>
+
 ⚠️ Optional / Advanced (For Custom Bridge Operators)
 
 These scripts are NOT required if you are using the official treasury escrow.
-
-<hr>
 
 deploy_voi_escrow.py
 
