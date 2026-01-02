@@ -1,0 +1,63 @@
+# =========================
+# VOI (source)
+# =========================
+VOI_ALGOD_ADDRESS=https://mainnet-api.voi.nodely.dev
+VOI_ALGOD_TOKEN=
+VOI_INDEXER_URL=https://mainnet-idx.voi.nodely.dev
+VOI_INDEXER_URLS=https://mainnet-idx.voi.nodely.dev
+
+# V4 log validator app
+VOI_LOG_APP_ID=
+VOI_LOG_PREFIX=NUGGET_V4|
+
+# the ASA on VOI (NUGGET)
+VOI_NUGGET_ASA_ID=
+
+# (Optional, but useful for sanity checks / display)
+VOI_TREASURY_ADDRESS=
+
+# =========================
+# ALGORAND (destination)
+# =========================
+ALGO_ALGOD_ADDRESS=https://mainnet-api.algonode.cloud
+ALGO_ALGOD_TOKEN=
+ALGO_INDEXER_URL=https://mainnet-idx.algonode.cloud
+
+# Algorand escrow app that performs "withdraw"
+ALGO_ESCROW_APP_ID=
+ALGO_NUGGET_ASA_ID=
+ALGO_ADMIN_MNEMONIC=""
+
+# =========================
+# RELAYER
+# =========================
+STATE_FILE=/opt/relayers/voi_to_algo/processed.json
+
+# If VOI indexer 504s, set a sane start round to avoid scanning from 0
+COUNTER_START=14684048
+
+# Avoid skipping old rounds due to indexer returning newest-first
+VOI_SCAN_WINDOW=20
+
+# Re-scan a small number of rounds every loop to catch late indexing
+VOI_LOOKBACK=50
+
+# Cap pagination loops per scan window
+VOI_MAX_PAGES=5
+
+# Optional: see why a log was skipped
+LOGLEVEL=INFO
+# LOGLEVEL=DEBUG
+
+VOI_CONFIRM_LAG=10
+
+HTTP_TIMEOUT=10
+INDEXER_LIMIT=20
+POLL_DELAY=20
+MAX_BACKOFF=180
+ALGO_CONFIRM_ROUNDS=12
+
+# Reduced-hardening switch:
+# 0 = proceed even if group fetch fails (recommended if indexer flaky)
+# 1 = require group fetch/validation (stricter, can stall on 504s)
+REQUIRE_GROUP_VALIDATION=0
