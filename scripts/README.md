@@ -6,6 +6,8 @@ This directory contains scripts used to deploy, test, and operate the VOI → Al
 Not all scripts are required for all setups.
 If you are using the official treasury-managed escrow, you do NOT need to deploy your own escrow application.
 
+<hr>
+
 ✅ Required for Production Use
 
 These scripts are required to run or interact with the bridge.
