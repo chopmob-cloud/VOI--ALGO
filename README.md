@@ -1,6 +1,18 @@
 # VOI--ALGO
 VOI to Algorand Mainnet Bridge
 
+This repository contains a trust-minimized bridge that allows
+VOI ASA deposits to be validated on-chain and released on Algorand
+by an off-chain relayer.
+
+## Architecture
+VOI → (on-chain validator log) → Relayer → Algorand Escrow
+
+## Components
+- VOI Log Validator (TEAL, parameterized)
+- Algorand Escrow App
+- Stateless Relayer
+
 
 ```mermaid
 flowchart TD
