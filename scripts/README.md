@@ -26,6 +26,8 @@ Emits a canonical log consumed by the relayer
 
 This must be deployed for the bridge to function.
 
+<hr>
+
 test_voi_deposit_v4.py
 
 Required for testing
