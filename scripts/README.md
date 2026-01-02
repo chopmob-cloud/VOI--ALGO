@@ -48,6 +48,8 @@ Test relayer ingestion
 
 Verify end-to-end bridge flow
 
+<hr>
+
 app_optin.py
 
 Required (one-time per account)
@@ -59,6 +61,8 @@ The Algorand receiver must be opted-in before funds can be released by the escro
 ⚠️ Optional / Advanced (For Custom Bridge Operators)
 
 These scripts are NOT required if you are using the official treasury escrow.
+
+<hr>
 
 deploy_voi_escrow.py
 
